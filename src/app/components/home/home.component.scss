@@ -26,6 +26,29 @@ h2 {
   padding: 0.2em;
 }
 
+.clientes tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+.clientes tbody tr:last-child {
+  border-bottom: none;
+}
+
+.clientes {
+  margin: 0 auto; /* Centra la tabla en la página */
+  border-collapse: collapse; /* Opcional: Quita los espacios entre las celdas para un borde más limpio */
+  width: 80%; /* Ajusta el ancho de la tabla según sea necesario */
+}
+
+.clientes th, .clientes td {
+  padding: 10px 15px; /* Añade espacio dentro de las celdas */
+  text-align: left; /* Alinea el texto a la izquierda */
+  border: 1px solid #ddd; /* Añade un borde fino a las celdas */
+}
+
+.clientes th {
+  background-color: #f2f2f2; /* Color de fondo para la cabecera */
+}
+
 .textoLogo {
   font-family: "Satisfy";
   font-size: 1.2em !important;
