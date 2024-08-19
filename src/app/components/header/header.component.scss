@@ -1,14 +1,6 @@
 
+@import '../../../../node_modules/bootstrap/scss/bootstrap.scss'; 
 
-
-$primary: #98d2de;
-$secondary: #9f83bd;
-$success: #8dacda;
-$warning: #F1FCFE;
-
-html {
-  background-color: $primary;
-}
 
 * {
   font-family: "Arial Narrow", Arial, sans-serif;
@@ -18,13 +10,6 @@ body {
 	overflow-x: hidden;
 }
 
-h2 {
-  font-family: "Satisfy", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 3em !important; 
-  padding: 0.2em;
-}
 
 .textoLogo {
   font-family: "Satisfy";
@@ -106,44 +91,6 @@ h2 {
     }    
   } 
 
-  @import '../../../../node_modules/bootstrap/scss/bootstrap.scss'; 
-
-  .btn-primary:hover { 
-    color: $primary !important;
-    background-color: $body-bg !important;
-    border-color: $primary !important;
-  }
-  .btn-secondary:hover {
-    color: $secondary !important;
-    background-color: $warning !important;
-    border-color: $secondary !important;
-  }
-  .btn-light:hover {
-    color: $dark;
-    background-color: $body-bg;
-    border-color: $dark;
-  }
-  .nav-link:hover{
-    color: $secondary !important;
-  }
-  .accordion-button:hover{
-    color:  $secondary !important;
-  }
-  .navbar-toggler:focus{
-    box-shadow: none;
-  }
-  .list-group-item:hover{
-    color:  $secondary !important;
-  }
- 
-  .social-icon:hover {
-    transform: scale(1.2);
-  }
-
-  .fixed-card {
-    top: 20%;
-    width: 18rem;
-  }
 
   
 

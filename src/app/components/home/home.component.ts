@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/cliente';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent{
   listaClientes: Cliente[] = [
     { id: 1,
       dni: "44587963L",
@@ -27,9 +28,4 @@ export class HomeComponent implements OnInit{
       telefono: 412789634
     },
   ]
-  
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
 }

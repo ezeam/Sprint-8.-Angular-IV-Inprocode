@@ -1,30 +1,15 @@
-
+@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 
 $primary: #98d2de;
 $secondary: #9f83bd;
-$success: #8dacda;
-$warning: #F1FCFE;
 
-html {
-  background-color: $primary;
-}
 
 * {
   font-family: "Arial Narrow", Arial, sans-serif;
 }
 
-body {
-	overflow-x: hidden;
-}
 
-h2 {
-  font-family: "Satisfy", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 3em !important; 
-  padding: 0.2em;
-}
 
 .clientes tbody tr {
   border-bottom: 1px solid #dee2e6;
@@ -34,19 +19,18 @@ h2 {
 }
 
 .clientes {
-  margin: 0 auto; /* Centra la tabla en la página */
-  border-collapse: collapse; /* Opcional: Quita los espacios entre las celdas para un borde más limpio */
-  width: 80%; /* Ajusta el ancho de la tabla según sea necesario */
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 
 .clientes th, .clientes td {
-  padding: 10px 15px; /* Añade espacio dentro de las celdas */
-  text-align: left; /* Alinea el texto a la izquierda */
-  border: 1px solid #ddd; /* Añade un borde fino a las celdas */
+  padding: 10px 15px;
+  text-align: left;
+  border: 1px solid #ddd; 
 }
 
 .clientes th {
-  background-color: #f2f2f2; /* Color de fondo para la cabecera */
+  background-color: #f2f2f2; 
 }
 
 .textoLogo {
@@ -59,113 +43,34 @@ h2 {
   margin-bottom: -60px;
 }
   
- .navbar-nav .nav-item .nav-link {
-    letter-spacing: 0.1rem;
-  }
-  
-  .nav-tabs .nav-item .nav-link.active {
-    color: dark;
-    border-bottom: 0.25rem solid $secondary;
-  }
-  
-  .nav-tabs .nav-item .nav-link {
-    color: gray;
-    border: none;
-  }
-  
-  .nav .nav-item .nav-link {
-    letter-spacing: 0.1rem;
-  } 
-
-  .card .img-size {
-    width: 40%;
+  .table-responsive {
+    overflow-x: auto;
   }
 
-  .quick-contact {
-    background-color: $primary;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    padding: 0.5em;
-    text-align: center;
-    font-size: 0.9em;
+  .table {
+    width: 100%;
+    /* Opcional: puedes definir un tamaño mínimo si es necesario */
+    min-width: 600px; /* Ajusta este valor según tus necesidades */
   }
 
-  .quick-contact a {
-    color: $secondary;   
+  .table th, .table td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
-  .carousel {
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-  }
-  
-  .carousel::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  .carousel::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-  }
+  @media (max-width: 576px) {
+    .table-responsive {
+      overflow-x: auto;
+    }
     
-  .carousel::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+    .table {
+      min-width: 600px; /* Puedes ajustar este valor según tus necesidades */
+    }
 
-  @media (max-width: 991px) {
-    .navbar-toggler {
-      display: flex;
-      justify-content: end !important;   
-    }    
-  }
-
-  @media screen and (max-width: 400px) {
-    h2 {
-      font-size: 2em !important;     
-    }    
-  } 
-
-  @import '../../../../node_modules/bootstrap/scss/bootstrap.scss'; 
-
-  .btn-primary:hover { 
-    color: $primary !important;
-    background-color: $body-bg !important;
-    border-color: $primary !important;
-  }
-  .btn-secondary:hover {
-    color: $secondary !important;
-    background-color: $warning !important;
-    border-color: $secondary !important;
-  }
-  .btn-light:hover {
-    color: $dark;
-    background-color: $body-bg;
-    border-color: $dark;
-  }
-  .nav-link:hover{
-    color: $secondary !important;
-  }
-  .accordion-button:hover{
-    color:  $secondary !important;
-  }
-  .navbar-toggler:focus{
-    box-shadow: none;
-  }
-  .list-group-item:hover{
-    color:  $secondary !important;
-  }
- 
-  .social-icon:hover {
-    transform: scale(1.2);
-  }
-
-  .fixed-card {
-    top: 20%;
-    width: 18rem;
+    .table th, .table td {
+      font-size: 0.9em; /* Reducir el tamaño de la fuente si es necesario */
+    }
   }
 
   
