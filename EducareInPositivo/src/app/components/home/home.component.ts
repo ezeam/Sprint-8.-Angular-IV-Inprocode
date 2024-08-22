@@ -17,7 +17,7 @@ export class HomeComponent{
       apellido: "Martín Prueba1",
       ciudad: "Bacelona",
       email: "prueba1@.gmail.com",
-      telefono: 652374521
+      telefono: '652374521'
     },
     { id: 2,
       dni: "44758563F",
@@ -25,7 +25,9 @@ export class HomeComponent{
       apellido: "Osuna Prueba2",
       ciudad: "Madrid",
       email: "prueba2@.gmail.com",
-      telefono: 412789634
+      telefono: '412789634'
     },
   ]
+
+  constructor() {}
 }

@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import routesCliente from '../routes/cliente';
-
+import db from '../db/connection';
 
 class Server {
   private app: Application;
@@ -13,6 +13,7 @@ class Server {
     this.listen();
     this.midlewares();
     this.routes();
+    this.dbConnect();
   }
 
   listen(){
@@ -34,8 +35,19 @@ class Server {
     //Parseamos el body, convertimos el json en un objeto
     this.app.use(express.json());
   }
-}
 
-  
+  async dbConnect() {
+
+    try {
+      await db.authenticate();
+      console.log("Base de datos conectada");
+    }
+    catch(error){
+      console.log(error);
+      console.log("Error al conectar con la base de datos");
+    }
+    
+  }
+}  
 
 export default Server;
