@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/cliente';
 import { RouterModule } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
   listaClientes: Cliente[] = [
     { id: 1,
       dni: "44587963L",
@@ -28,6 +29,17 @@ export class HomeComponent{
       telefono: '412789634'
     },
   ]
+  
+  constructor(private _clienteService: ClienteService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this.getListClientes();
+  };
+
+
+  getListClientes(){
+    this._clienteService.getListClientes().subscribe((data: Cliente[]) => {
+      console.log("Lista de clientes que viene desde la bd",data);
+    })
+  }
 }

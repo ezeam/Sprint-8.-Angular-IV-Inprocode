@@ -1,10 +1,12 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
 import routesCliente from '../routes/cliente';
 import db from '../db/connection';
 
 class Server {
   private app: Application;
   private port: string;
+  
 
   constructor() {
     console.log("PORT:", process.env.PORT);
@@ -34,6 +36,14 @@ class Server {
   midlewares() {
     //Parseamos el body, convertimos el json en un objeto
     this.app.use(express.json());
+
+    //Cors:
+    const corsOptions = {
+      origin: 'http://localhost:4200', // Permite solo este origen
+      credentials: true,
+      optionsSuccessStatus: 200 // Algunos navegadores antiguos pueden necesitarlo
+    };
+    this.app.use(cors(corsOptions));
   }
 
   async dbConnect() {
