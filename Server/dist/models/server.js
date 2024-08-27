@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const cliente_1 = __importDefault(require("../routes/cliente"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
@@ -41,6 +42,13 @@ class Server {
     midlewares() {
         //Parseamos el body, convertimos el json en un objeto
         this.app.use(express_1.default.json());
+        //Cors:
+        const corsOptions = {
+            origin: 'http://localhost:4200', // Permite solo este origen
+            credentials: true,
+            optionsSuccessStatus: 200 // Algunos navegadores antiguos pueden necesitarlo
+        };
+        this.app.use((0, cors_1.default)(corsOptions));
     }
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {

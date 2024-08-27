@@ -19,4 +19,16 @@ export class ClienteService {
   getListClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
+
+  deleteCliente(id:number): Observable<void>{
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  }
+
+  saveCliente(cliente: Cliente): Observable<void>{
+   return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, cliente);
+  }
+
+  getCliente(id: number): Observable<Cliente>{
+    return this.http.get<Cliente>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  }
 }

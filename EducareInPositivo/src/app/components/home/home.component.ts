@@ -2,33 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../interfaces/cliente';
 import { RouterModule } from '@angular/router';
 import { ClienteService } from '../../services/cliente.service';
+import { ProgressBarrComponent } from "../../shared/progress-barr/progress-barr.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, ProgressBarrComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-  listaClientes: Cliente[] = [
-    { id: 1,
-      dni: "44587963L",
-      nombre: "Ana",
-      apellido: "Martín Prueba1",
-      ciudad: "Bacelona",
-      email: "prueba1@.gmail.com",
-      telefono: '652374521'
-    },
-    { id: 2,
-      dni: "44758563F",
-      nombre: "Pepe",
-      apellido: "Osuna Prueba2",
-      ciudad: "Madrid",
-      email: "prueba2@.gmail.com",
-      telefono: '412789634'
-    },
-  ]
+  listaClientes: Cliente[] = []
+  loading: boolean = false;
+  successDelete: boolean = false;
   
   constructor(private _clienteService: ClienteService) {}
 
@@ -38,8 +24,22 @@ export class HomeComponent implements OnInit{
 
 
   getListClientes(){
+    this.loading = true;
     this._clienteService.getListClientes().subscribe((data: Cliente[]) => {
-      console.log("Lista de clientes que viene desde la bd",data);
+      this.listaClientes = data;
+      this.loading = false;
     })
   }
+
+  deleteCliente(id: number){
+    this.loading = true;
+    this._clienteService.deleteCliente(id).subscribe(() => {
+      this.getListClientes();
+      this.successDelete = true;
+      setTimeout(() => {
+        this.successDelete = false;
+      }, 2000);
+    })
+  } 
 }
+

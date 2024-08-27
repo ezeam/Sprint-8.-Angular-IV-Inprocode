@@ -16,7 +16,7 @@ exports.updateCliente = exports.postCliente = exports.deleteCliente = exports.ge
 const cliente_1 = __importDefault(require("../models/cliente"));
 const getClientes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listClientes = yield cliente_1.default.findAll();
-    res.json({ listClientes });
+    res.json(listClientes);
 });
 exports.getClientes = getClientes;
 const getCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

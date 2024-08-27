@@ -3,7 +3,7 @@ import Cliente from '../models/cliente';
 
 export const getClientes = async(req: Request, res: Response)=> {
  const listClientes = await Cliente.findAll()
-  res.json({ listClientes});
+  res.json(listClientes);
 }
 
 export const getCliente = async (req: Request, res: Response)=> {  
