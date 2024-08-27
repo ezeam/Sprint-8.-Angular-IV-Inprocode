@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Cliente } from '../../interfaces/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import { ProgressBarrComponent } from "../../shared/progress-barr/progress-barr.component";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-edit-client',
@@ -22,7 +23,8 @@ export class AddEditClientComponent implements OnInit{
   constructor(private fb: FormBuilder, 
     private _clienteServicio: ClienteService, 
     private router: Router, 
-    private aRouter: ActivatedRoute) {
+    private aRouter: ActivatedRoute, 
+    private location: Location) {
     this.formAdd = this.fb.group({ 
       dni: ["", Validators.required],
       nombre: ["", Validators.required],
@@ -41,7 +43,7 @@ export class AddEditClientComponent implements OnInit{
   }
 }
 
-  addClient(){
+  addClient(): void{
     console.log(this.formAdd.value.nombre);
      const client : Cliente = {
       dni: this.formAdd.value.dni,
@@ -53,7 +55,6 @@ export class AddEditClientComponent implements OnInit{
     }
     this.loading = true;
     this._clienteServicio.saveCliente(client).subscribe(() => {
-      console.log("Cliente agregado");
       this.loading = false;
       this.successAdd = true;
       setTimeout(() => {
@@ -61,6 +62,10 @@ export class AddEditClientComponent implements OnInit{
         this.router.navigate(['/']);
       }, 2000);
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   getCliente(id: number){
