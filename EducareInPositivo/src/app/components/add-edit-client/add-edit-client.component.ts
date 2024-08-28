@@ -18,6 +18,7 @@ export class AddEditClientComponent implements OnInit{
   formAdd: FormGroup;
   loading: boolean = false;
   successAdd: boolean = false;
+  successEdit: boolean = false;
   id: number;
   operacion: string = "Añadir ";
 
@@ -55,7 +56,20 @@ export class AddEditClientComponent implements OnInit{
       telefono: this.formAdd.value.telefono,
     }
     this.loading = true;
-    this._clienteServicio.saveCliente(client).subscribe(() => {
+     if(this.id !== 0){
+      //Es editar      
+      this._clienteServicio.updateCliente(this.id, client).subscribe(() => {
+        this.loading = false;
+        client.id = this.id;
+        this.successEdit = true;
+        setTimeout(() => {
+          this.successEdit = false;
+          this.router.navigate(['/']);
+        }, 2000);
+      })
+     }else{
+      //Es añadir
+      this._clienteServicio.saveCliente(client).subscribe(() => {
       this.loading = false;
       this.successAdd = true;
       setTimeout(() => {
@@ -63,6 +77,7 @@ export class AddEditClientComponent implements OnInit{
         this.router.navigate(['/']);
       }, 2000);
     });
+     }    
   }
 
   goBack(): void {
@@ -75,7 +90,7 @@ export class AddEditClientComponent implements OnInit{
   this._clienteServicio.getCliente(id).subscribe((data: ClienteResponse) => { 
     console.log("Datos recibidos", data); 
     this.loading = false;
-    if (data && data.cliente) { // Asegúrate de acceder a la estructura correcta
+    if (data && data.cliente) { 
       console.log("Antes de patchValue", this.formAdd.value);
       this.formAdd.patchValue({
         dni: data.cliente.dni,

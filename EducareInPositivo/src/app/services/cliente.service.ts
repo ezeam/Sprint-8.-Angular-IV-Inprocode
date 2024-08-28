@@ -31,4 +31,8 @@ export class ClienteService {
   getCliente(id: number): Observable<ClienteResponse>{
     return this.http.get<ClienteResponse>(`${this.myAppUrl}${this.myApiUrl}${id}`);
   }
+
+  updateCliente(id: number, cliente: Cliente): Observable<void>{
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, cliente);
+  }
 }
