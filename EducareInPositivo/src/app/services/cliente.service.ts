@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '../eviroments/enviroment';
-import { Cliente } from '../interfaces/cliente';
+import { Cliente, ClienteResponse } from '../interfaces/cliente';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class ClienteService {
    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, cliente);
   }
 
-  getCliente(id: number): Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  getCliente(id: number): Observable<ClienteResponse>{
+    return this.http.get<ClienteResponse>(`${this.myAppUrl}${this.myApiUrl}${id}`);
   }
 }
