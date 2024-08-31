@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+La aplicación está iniciada como SSR, desde lado del servidor, por lo que tuve problemas a la hora de recuperar los datos de navegación del usuario. Para solucionarlo hice lo siguiente: 
+Verificación del entorno del cliente
+Puedes modificar el método getUserLocation en el servicio para verificar si estás en el entorno del cliente antes de intentar acceder a navigator.geolocation:
+-->PLATFORM_ID: Es un token de Angular que te permite determinar si el código se está ejecutando en el lado del servidor o del cliente.
+-->isPlatformBrowser: Es una función que verifica si el código se está ejecutando en un navegador (cliente). Si devuelve true, puedes estar seguro de que el código del cliente se puede ejecutar.

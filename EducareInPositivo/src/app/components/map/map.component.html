@@ -1,1 +1,9 @@
-<p>map works!</p>
+@if(!UserLocationReady){
+  <app-progress-barr></app-progress-barr>
+}
+@else {
+  <div>
+    <span>Mi geolocalización es: {{userLocation}}</span>
+  </div>
+}
+
