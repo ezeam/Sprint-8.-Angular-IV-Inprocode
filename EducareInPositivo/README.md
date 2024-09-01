@@ -32,3 +32,8 @@ Verificación del entorno del cliente
 Puedes modificar el método getUserLocation en el servicio para verificar si estás en el entorno del cliente antes de intentar acceder a navigator.geolocation:
 -->PLATFORM_ID: Es un token de Angular que te permite determinar si el código se está ejecutando en el lado del servidor o del cliente.
 -->isPlatformBrowser: Es una función que verifica si el código se está ejecutando en un navegador (cliente). Si devuelve true, puedes estar seguro de que el código del cliente se puede ejecutar.
+
+
+## Guia para instlar MapLibre en Angular:
+https://docs.maptiler.com/angular/maplibre-gl-js/how-to-use-maplibre-gl-js/
+https://cloud.maptiler.com/account/keys/
