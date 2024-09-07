@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const cliente_1 = __importDefault(require("../routes/cliente"));
+const markerRoutes_1 = __importDefault(require("../routes/markerRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     constructor() {
@@ -38,6 +39,7 @@ class Server {
             });
         });
         this.app.use('/api/clientes', cliente_1.default);
+        this.app.use('/api/markers', markerRoutes_1.default);
     }
     midlewares() {
         //Parseamos el body, convertimos el json en un objeto

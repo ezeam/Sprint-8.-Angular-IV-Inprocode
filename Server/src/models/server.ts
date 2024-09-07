@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import routesCliente from '../routes/cliente';
+import routesMarker from '../routes/markerRoutes';
 import db from '../db/connection';
 
 class Server {
@@ -31,6 +32,7 @@ class Server {
       });
     });
     this.app.use('/api/clientes', routesCliente);
+    this.app.use('/api/markers', routesMarker);
   }
 
   midlewares() {

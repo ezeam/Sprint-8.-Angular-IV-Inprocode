@@ -1,12 +1,25 @@
-@if(!UserLocationReady){
-  <app-progress-barr></app-progress-barr>
-}
-@else {
-  <div>
-    <span>Mi geolocalización es: {{userLocation}}</span>
-  </div>
-
-}
-<div class="map-wrap">
-  <div class="map" #map></div>
+<div class="container">
+  <div class="row">
+      <div class="col-md-12 d-flex justify-content-center button-container mt-5">
+        <button class="btn btn-primary mb-1 me-1" (click)="showUserLocation()">Mi ubicación</button>
+        @for(coord of coordinates; track coord.id){          
+          <button class="btn btn-primary mb-1 me-1"  (click)="addMapLocation({lng: coord.lng, lat: coord.lat})">
+            {{ coord.nombre }}
+          </button>
+        }
+      </div>
+    </div>
+      <!-- Mapa centrado -->
+      <div class="col-md-12 map-container mt-2">
+        <div class="map-wrap">
+          <div class="map" #map></div>
+        </div>
+      </div>  
 </div>
+  
+  
+  
+  
+  
+
+

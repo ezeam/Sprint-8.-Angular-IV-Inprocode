@@ -1,6 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,9 @@ export class LugaresService {
 
   private userLocationSubject = new BehaviorSubject<[number, number] | undefined>(undefined);
   public userLocation$ = this.userLocationSubject.asObservable();
+  private apiUrl = 'http://localhost:3000/api/markers';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private http: HttpClient) {
     if (isPlatformBrowser(this.platformId)) {
       this.getUserLocation();
     }
@@ -40,5 +43,23 @@ export class LugaresService {
         }
       );
     });
+  }
+
+  public getMarkers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      catchError(error => {
+        console.error('Error al obtener los marcadores:', error);
+        return of([]); 
+      })
+    );
+  }
+
+  public addMarker(marker: { lat: number, lng: number, description: string }): Observable<any> {
+    return this.http.post<any>(this.apiUrl, marker).pipe(
+      catchError(error => {
+        console.error('Error al añadir el marcador:', error);
+        throw error;
+      })
+    );
   }
 }
