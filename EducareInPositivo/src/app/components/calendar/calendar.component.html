@@ -1,1 +1,43 @@
 <tui-calendar-range [items]="items" />  
+
+<button (click)="openModal()">Crear Evento</button>
+
+<!-- Botón para ver la lista de eventos -->
+<button (click)="openEventsList()">Ver Eventos</button>
+
+<!-- Modal para crear un evento -->
+<div *ngIf="isModalOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Crear Evento</h2>
+    <form (ngSubmit)="createEvent()">
+      <label for="title">Título:</label>
+      <input id="title" [(ngModel)]="newEvent.title" name="title" required />
+
+      <label for="color">Color:</label>
+      <input id="color" [(ngModel)]="newEvent.color" name="color" required />
+
+      <label for="start">Fecha de Inicio:</label>
+      <input id="start" [(ngModel)]="newEvent.start" name="start" type="date" required />
+
+      <label for="end">Fecha de Fin:</label>
+      <input id="end" [(ngModel)]="newEvent.end" name="end" type="date" required />
+
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal para ver la lista de eventos -->
+<div *ngIf="isEventsListOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeEventsList()">&times;</span>
+    <h2>Lista de Eventos</h2>
+    <ul>
+      <li *ngFor="let event of events">
+        {{ event.title }} - {{ event.start | date }} to {{ event.end | date }}
+        <button (click)="deleteEvent(event.id)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+</div>

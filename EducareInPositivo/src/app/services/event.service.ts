@@ -7,7 +7,7 @@ import { Event } from '../interfaces/event.interface';
   providedIn: 'root',
 })
 export class EventService {
-  private apiUrl = 'http://localhost:3000/api/events'; // Cambia esto a la URL de tu API
+  private apiUrl = 'http://localhost:3000/api/events'; 
 
   constructor(private http: HttpClient) {}
 
