@@ -3,6 +3,7 @@ import cors from 'cors';
 import routesCliente from '../routes/cliente';
 import routesMarker from '../routes/markerRoutes';
 import db from '../db/connection';
+import eventRoutes from '../routes/eventRoutes';
 
 class Server {
   private app: Application;
@@ -33,6 +34,7 @@ class Server {
     });
     this.app.use('/api/clientes', routesCliente);
     this.app.use('/api/markers', routesMarker);
+    this.app.use('/api/events', eventRoutes);
   }
 
   midlewares() {

@@ -17,6 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const cliente_1 = __importDefault(require("../routes/cliente"));
 const markerRoutes_1 = __importDefault(require("../routes/markerRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
+const eventRoutes_1 = __importDefault(require("../routes/eventRoutes"));
 class Server {
     constructor() {
         console.log("PORT:", process.env.PORT);
@@ -40,6 +41,7 @@ class Server {
         });
         this.app.use('/api/clientes', cliente_1.default);
         this.app.use('/api/markers', markerRoutes_1.default);
+        this.app.use('/api/events', eventRoutes_1.default);
     }
     midlewares() {
         //Parseamos el body, convertimos el json en un objeto
