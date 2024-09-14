@@ -5,26 +5,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-class Event extends sequelize_1.Model {
+class Sale extends sequelize_1.Model {
 }
-Event.init({
+Sale.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
     },
-    from: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
+    mes: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
     },
-    to: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-    },
+    venta: {
+        type: sequelize_1.DataTypes.FLOAT,
+        allowNull: false
+    }
 }, {
     sequelize: connection_1.default,
-    modelName: 'Event',
-    tableName: 'events',
-    timestamps: false,
+    modelName: 'Sale',
+    tableName: 'sales',
+    timestamps: false
 });
-exports.default = Event;
+exports.default = Sale;

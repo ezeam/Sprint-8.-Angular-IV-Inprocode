@@ -42,6 +42,7 @@ class Server {
         this.app.use('/api/clientes', cliente_1.default);
         this.app.use('/api/markers', markerRoutes_1.default);
         this.app.use('/api/events', eventRoutes_1.default);
+        this.app.use('/api/sales', eventRoutes_1.default);
     }
     midlewares() {
         //Parseamos el body, convertimos el json en un objeto

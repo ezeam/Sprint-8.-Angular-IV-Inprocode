@@ -3,10 +3,8 @@ import sequelize from '../db/connection';
 
 class Event extends Model {
   public id!: number;
-  public title!: string;
-  public color!: string;
-  public start!: Date;
-  public end!: Date;
+  public from!: string;
+  public to!: string;
 }
 
 Event.init({
@@ -15,19 +13,11 @@ Event.init({
     autoIncrement: true,
     primaryKey: true,
   },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  color: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  start: {
+  from: {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  end: {
+  to: {
     type: DataTypes.DATE,
     allowNull: false,
   },

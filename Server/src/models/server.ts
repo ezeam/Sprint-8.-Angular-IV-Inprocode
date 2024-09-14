@@ -35,6 +35,7 @@ class Server {
     this.app.use('/api/clientes', routesCliente);
     this.app.use('/api/markers', routesMarker);
     this.app.use('/api/events', eventRoutes);
+    this.app.use('/api/sales', eventRoutes);
   }
 
   midlewares() {
