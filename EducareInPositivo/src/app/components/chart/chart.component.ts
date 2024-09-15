@@ -1,42 +1,51 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TuiPieChart, TuiAxes, TuiBarChart } from '@taiga-ui/addon-charts';
+import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
+import { TuiHint } from '@taiga-ui/core';
 import { SaleService } from '../../services/sale.service';
-import { TuiBar } from '@taiga-ui/addon-charts';
-import { TuiBarSet } from '@taiga-ui/addon-charts';
-
+import { tuiCeil } from '@taiga-ui/cdk';
+ 
 @Component({
-  selector: 'app-chart',
-  standalone: true,
-  imports: [ TuiBar, TuiBarSet ],
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+    standalone: true,
+    exportAs: "ChartComponent",
+    imports: [AsyncPipe, TuiAmountPipe, TuiHint, TuiPieChart, TuiAxes, TuiBarChart],
+    templateUrl: './chart.component.html',
+    styleUrls: ['./chart.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartComponent implements OnInit {
-  salesData: any[] = [];
-  chartData: any[] = [];
-  isBrowser: boolean;
+
+export class ChartComponent {
+  protected readonly labels: string[] = [];  
+  protected readonly value: number[] = [];
+    
+  protected readonly labelsX: string[] = [];
+  protected readonly labelsY: string[] = [];
+  protected max: number = 0;
   
 
-  constructor(
-    private saleService: SaleService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  constructor(   
+    private salesService: SaleService,      
+  ) { }
 
-  ngOnInit(): void {
-    if (this.isBrowser) {
-      this.saleService.getSales().subscribe((sales) => {
-        this.salesData = sales;
-        this.formatChartData();
+  ngOnInit(): void {  
+    this.loadEvents();     
+  }    
+
+  loadEvents(): void {
+    this.salesService.getSales().subscribe(sales => {    
+      sales.forEach(sale => {
+        this.labels.push(sale.mes);
+        this.value.push(sale.importe);
+        
+        this.labelsX.push(sale.mes);
       });
-    }
-  }
-
-  private formatChartData(): void {
-    this.chartData = this.salesData.map(sale => ({
-      name: sale.mes,
-      value: sale.venta
-    }));
+      // Encuentra el importe máximo
+      const maxImporte = Math.max(...this.value);
+      // Pongo 0 de inicio Y el mayor valor de 'value' como final de Y
+      this.labelsY.push('0', maxImporte.toString());
+      // ponemos el techo de la gráfica como el valor maximo de 'value'
+      this.max = maxImporte      
+    });
   }
 }

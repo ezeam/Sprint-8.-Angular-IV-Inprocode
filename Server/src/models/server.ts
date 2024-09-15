@@ -4,6 +4,7 @@ import routesCliente from '../routes/cliente';
 import routesMarker from '../routes/markerRoutes';
 import db from '../db/connection';
 import eventRoutes from '../routes/eventRoutes';
+import salesRoutes from '../routes/salesRoutes'
 
 class Server {
   private app: Application;
@@ -35,7 +36,7 @@ class Server {
     this.app.use('/api/clientes', routesCliente);
     this.app.use('/api/markers', routesMarker);
     this.app.use('/api/events', eventRoutes);
-    this.app.use('/api/sales', eventRoutes);
+    this.app.use('/api/sales', salesRoutes);
   }
 
   midlewares() {

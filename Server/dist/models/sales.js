@@ -17,7 +17,7 @@ Sale.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    venta: {
+    importe: {
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false
     }

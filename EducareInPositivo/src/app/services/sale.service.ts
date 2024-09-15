@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 interface Sale {
   id: number;
   mes: string;
-  venta: number;
+  importe: number;
 }
 
 @Injectable({
@@ -13,6 +13,7 @@ interface Sale {
 })
 export class SaleService {
   private apiUrl = 'http://localhost:3000/api/sales';
+  
 
   constructor(private http: HttpClient) {}
 

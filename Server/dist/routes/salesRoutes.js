@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const SalesController = __importStar(require("../controllers/salesController"));
 const router = (0, express_1.Router)();
-router.get('/sales', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const sales = yield SalesController.getSales();
         res.json(sales);
@@ -45,22 +45,23 @@ router.get('/sales', (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         next(err);
     }
 }));
-router.get('/sales/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const sale = yield SalesController.getSaleById(Number(req.params.id));
-        if (sale) {
-            res.json(sale);
-        }
-        else {
-            res.status(404).send('Sale not found');
-        }
+        const sales = yield SalesController.getSales();
+        console.log("Sales desde la función get del server:", sales); // Verifica lo que se está devolviendo
+        res.json(sales);
     }
     catch (err) {
+        console.error('Error al obtener ventas:', err); // Registra el error
         next(err);
     }
 }));
-router.post('/sales', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { mes, importe } = req.body;
+        if (!mes || !importe) {
+            return res.status(400).json({ error: 'Mes y venta son obligatorios' });
+        }
         const sale = yield SalesController.createSale(req.body);
         res.status(201).json(sale);
     }
@@ -68,7 +69,7 @@ router.post('/sales', (req, res, next) => __awaiter(void 0, void 0, void 0, func
         next(err);
     }
 }));
-router.put('/sales/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.put('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [affectedCount, affectedRows] = yield SalesController.updateSale(Number(req.params.id), req.body);
         if (affectedCount > 0) {
@@ -82,7 +83,7 @@ router.put('/sales/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next(err);
     }
 }));
-router.delete('/sales/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield SalesController.deleteSale(Number(req.params.id));
         res.status(204).send();

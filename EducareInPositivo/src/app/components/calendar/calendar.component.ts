@@ -29,7 +29,6 @@ import { CommonModule } from '@angular/common';
     providers: [tuiDateFormatProvider({mode: 'YMD', separator: '/'})],
 })
 export class CalendarComponent {
-
   protected readonly control = new FormControl();
   selectedDates?: { from: Date, to: Date };  
   isModalOpen = false;
@@ -48,6 +47,7 @@ export class CalendarComponent {
       }
     });
   }
+
   items = [
     new TuiDayRangePeriod(
       new TuiDayRange(TuiDay.currentLocal().append({day: -30}), TuiDay.currentLocal()), 'Cargando fechas del servidor...',
@@ -59,11 +59,9 @@ export class CalendarComponent {
   }
 
   loadEvents(): void {
-    this.eventService.getEvents().subscribe(events => {
-      console.log('events ->', events);
+    this.eventService.getEvents().subscribe(events => {    
       this.events = events;
       this.items = [];
-      console.log('items ->', this.items);
 
       events.forEach((event, indx) => {          
         const toDate = new Date(event.to);
@@ -81,6 +79,9 @@ export class CalendarComponent {
         } else {
           console.error(`Error: fromDate (${fromDay}) is after toDate (${toDay}) for event ${indx}`);
         }
+
+        console.log('events ->', events);       
+        console.log('items ->', this.items);
       });       
     });
   }

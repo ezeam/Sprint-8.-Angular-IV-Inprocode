@@ -5,7 +5,7 @@ import * as SalesController from '../controllers/salesController';
 
 const router = Router();
 
-router.get('/sales', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const sales = await SalesController.getSales();
     res.json(sales);
@@ -14,21 +14,26 @@ router.get('/sales', async (req: Request, res: Response, next: NextFunction) => 
   }
 });
 
-router.get('/sales/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const sale = await SalesController.getSaleById(Number(req.params.id));
-    if (sale) {
-      res.json(sale);
-    } else {
-      res.status(404).send('Sale not found');
-    }
+    const sales = await SalesController.getSales();
+    console.log("Sales desde la función get del server:", sales); // Verifica lo que se está devolviendo
+    res.json(sales);
   } catch (err) {
+    console.error('Error al obtener ventas:', err); // Registra el error
     next(err);
   }
 });
 
-router.post('/sales', async (req: Request, res: Response, next: NextFunction) => {
+
+router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const { mes, importe } = req.body;
+
+    if (!mes || !importe) {
+      return res.status(400).json({ error: 'Mes y venta son obligatorios' });
+    }
+
     const sale = await SalesController.createSale(req.body);
     res.status(201).json(sale);
   } catch (err) {
@@ -36,7 +41,8 @@ router.post('/sales', async (req: Request, res: Response, next: NextFunction) =>
   }
 });
 
-router.put('/sales/:id', async (req: Request, res: Response, next: NextFunction) => {
+
+router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const [affectedCount, affectedRows] = await SalesController.updateSale(Number(req.params.id), req.body);
     if (affectedCount > 0) {
@@ -49,7 +55,7 @@ router.put('/sales/:id', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
-router.delete('/sales/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     await SalesController.deleteSale(Number(req.params.id));
     res.status(204).send();

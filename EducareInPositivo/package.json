@@ -22,6 +22,7 @@
     "@angular/router": "^18.1.0",
     "@angular/ssr": "^18.1.4",
     "@taiga-ui/addon-charts": "^4.6.0",
+    "@taiga-ui/addon-commerce": "^4.6.0",
     "@taiga-ui/cdk": "^4.6.0",
     "@taiga-ui/core": "^4.6.0",
     "@taiga-ui/event-plugins": "^4.0.2",

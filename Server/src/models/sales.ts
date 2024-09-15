@@ -4,7 +4,7 @@ import sequelize from '../db/connection';
 class Sale extends Model {
   public id!: number;
   public mes!: string;
-  public venta!: number;
+  public importe!: number;
 }
 
 Sale.init({
@@ -17,7 +17,7 @@ Sale.init({
     type: DataTypes.STRING,
     allowNull: false
   },
-  venta: {
+  importe: {
     type: DataTypes.FLOAT,
     allowNull: false
   }
