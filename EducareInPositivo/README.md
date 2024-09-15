@@ -11,6 +11,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 XAMPP
 Apache y MySQL Start
 
+## liberías
+CALENDARIO: https://taiga-ui.dev/components/calendar-month
+GRÁFICOS: https://taiga-ui.dev/charts/bar-chart
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
