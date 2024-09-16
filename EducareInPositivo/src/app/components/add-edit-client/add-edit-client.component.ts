@@ -35,7 +35,7 @@ export class AddEditClientComponent implements OnInit{
       email: ["", Validators.required],
       telefono: [null, Validators.required],
     })
-   this.id = Number(aRouter.snapshot.paramMap.get('id')) ; //Capturamos el id del cliente que queremos
+   this.id = Number(aRouter.snapshot.paramMap.get('id')) ;
   }
 
   ngOnInit(): void {
@@ -46,7 +46,6 @@ export class AddEditClientComponent implements OnInit{
 }
 
   addClient(): void{
-    console.log(this.formAdd.value.nombre);
      const client : Cliente = {
       dni: this.formAdd.value.dni,
       nombre: this.formAdd.value.nombre,
@@ -56,8 +55,7 @@ export class AddEditClientComponent implements OnInit{
       telefono: this.formAdd.value.telefono,
     }
     this.loading = true;
-     if(this.id !== 0){
-      //Es editar      
+     if(this.id !== 0){    
       this._clienteServicio.updateCliente(this.id, client).subscribe(() => {
         this.loading = false;
         client.id = this.id;
@@ -68,7 +66,6 @@ export class AddEditClientComponent implements OnInit{
         }, 2000);
       })
      }else{
-      //Es añadir
       this._clienteServicio.saveCliente(client).subscribe(() => {
       this.loading = false;
       this.successAdd = true;
@@ -85,13 +82,10 @@ export class AddEditClientComponent implements OnInit{
   }
 
   getCliente(id: number) {
-  console.log("Id del cliente que vamos a editar", id);
   this.loading = true;
-  this._clienteServicio.getCliente(id).subscribe((data: ClienteResponse) => { 
-    console.log("Datos recibidos", data); 
+  this._clienteServicio.getCliente(id).subscribe((data: ClienteResponse) => {
     this.loading = false;
-    if (data && data.cliente) { 
-      console.log("Antes de patchValue", this.formAdd.value);
+    if (data && data.cliente) {
       this.formAdd.patchValue({
         dni: data.cliente.dni,
         nombre: data.cliente.nombre,
@@ -100,7 +94,6 @@ export class AddEditClientComponent implements OnInit{
         email: data.cliente.email,
         telefono: data.cliente.telefono
       });
-      console.log("Después de patchValue", this.formAdd.value); 
       }
     });
   }

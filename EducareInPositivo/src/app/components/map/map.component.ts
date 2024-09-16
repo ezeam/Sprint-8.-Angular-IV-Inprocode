@@ -33,7 +33,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeMap();
-      this.loadMarkers(); // Asegúrate de cargar los datos después de inicializar el mapa
+      this.loadMarkers();
     }
   }
 

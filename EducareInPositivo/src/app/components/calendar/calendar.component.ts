@@ -40,8 +40,7 @@ export class CalendarComponent {
     private eventService: EventService, 
     private cdr: ChangeDetectorRef
   ) {    
-    this.control.valueChanges.subscribe(value => {     
-      console.log('Fechas seleccionadas:', value);
+    this.control.valueChanges.subscribe(value => { 
       if (value) {
         this.selectedDates = value;
       }
@@ -80,18 +79,14 @@ export class CalendarComponent {
           console.error(`Error: fromDate (${fromDay}) is after toDate (${toDay}) for event ${indx}`);
         }
 
-        console.log('events ->', events);       
-        console.log('items ->', this.items);
       });       
     });
   }
   
   createEvent(): void {
     if (this.selectedDates) {
-      console.log('OJO Datos a enviar:', this.selectedDates);
       this.eventService.addEvent(this.selectedDates).subscribe(
-        (newEvent) => {
-          console.log('Evento creado:', newEvent);         
+        (newEvent) => {         
           this.events.push(newEvent);
           this.selectedDates = undefined; 
           this.control.reset();
@@ -110,7 +105,7 @@ export class CalendarComponent {
     if (id !== undefined) {
       this.eventService.deleteEvent(id).subscribe(() => {
           this.events = this.events.filter(event => event.id !== id);
-          this.cdr.detectChanges();  // Fuerza la detección de cambios
+          this.cdr.detectChanges();  
           this.loadEvents();
         },
         (error) => {

@@ -33,7 +33,6 @@ export class LugaresService {
         ({ coords }) => {
           const location: [number, number] = [coords.longitude, coords.latitude];
           this.userLocationSubject.next(location);
-          console.log("Geolocalización que recupera el servicio: ", location);
           resolve(location);
         },
         (err) => {

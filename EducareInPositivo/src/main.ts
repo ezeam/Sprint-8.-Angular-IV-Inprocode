@@ -9,3 +9,9 @@ bootstrapApplication(AppComponent, appConfig)
     alert("El navegador no soporta la geolocalización");
     throw new Error ("El navegador no soporta la geolocalización");
   }
+
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(callback) {
+        return setTimeout(callback, 1000 / 60);
+    };
+}
