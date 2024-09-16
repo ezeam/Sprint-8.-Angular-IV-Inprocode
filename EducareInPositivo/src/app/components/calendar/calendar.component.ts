@@ -72,7 +72,7 @@ export class CalendarComponent {
         if (fromDay.daySameOrBefore(toDay)) {
           this.items.push(
             new TuiDayRangePeriod(
-              new TuiDayRange(fromDay, toDay), `Fecha nº ${(indx + 1).toString() }`
+              new TuiDayRange(fromDay, toDay), `Evento ${(indx + 1).toString() }`
             )
           );
         } else {
