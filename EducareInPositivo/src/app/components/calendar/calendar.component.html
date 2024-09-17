@@ -1,73 +1,120 @@
-<tui-calendar-range
-  [items]="items"
-  [value]="value"
-  [(item)]="selected"
-  (valueChange)="onValue($event)"
-/>
+<div class="container"></div>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-8">
+    <tui-calendar-range
+      [items]="items"
+      [value]="value"
+      [(item)]="selected"
+      (valueChange)="onValue($event)"
+    />
 
-<button type="button" class="btn btn-primary" (click)="openModal()">
-  Crear Evento
-</button>
-@if(isModalOpen){
-  <div class="modal fade show" tabindex="-1" style="display: block;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Crear Evento</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="dateRange" class="form-label">Elije rango de fechas</label>
-              <tui-input-date-range [formControl]="control" id="dateRange"></tui-input-date-range>
-            </div>
-            @if(selectedDates){
+    <button type="button" class="btn btn-primary" (click)="openModal()">
+      Crear Evento
+    </button>
+    @if(isModalOpen){
+    <div class="modal fade show" tabindex="-1" style="display: block">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Crear Evento</h5>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="closeModal()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="dateRange" class="form-label"
+                  >Elije rango de fechas</label
+                >
+                <tui-input-date-range
+                  [formControl]="control"
+                  id="dateRange"
+                ></tui-input-date-range>
+              </div>
+              @if(selectedDates){
               <p>
                 Fechas seleccionadas:
                 <strong>Desde: {{ selectedDates.from }}</strong>
                 <strong>Hasta: {{ selectedDates.to }}</strong>
               </p>
-            }
-            
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
-          <button type="button" class="btn btn-success" (click)="createEvent()">Enviar Fechas</button>
+              }
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="createEvent()"
+            >
+              Enviar Fechas
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    }
+    <button type="button" class="btn btn-info" (click)="openEventsList()">
+      Borrar eventos
+    </button>
   </div>
-}
+</div>
 
 
-<button type="button" class="btn btn-info" (click)="openEventsList()">
-  Borrar eventos
-</button>
 @if(isEventsListOpen){
-  <div class="modal fade show" tabindex="-1" style="display: block;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Lista de Eventos</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="closeEventsList()"></button>
-        </div>
-        <div class="modal-body">
-          <ul class="list-group">
-            <li *ngFor="let event of events" class="list-group-item d-flex justify-content-between align-items-center">
-              <span>
-                ID: {{ event.id }} - {{ event.from | date }} hasta {{ event.to | date }}
-              </span>
-              <button type="button" class="btn btn-danger btn-sm" (click)="deleteEvent(event.id)">Eliminar</button>
-            </li>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeEventsList()">Cerrar</button>
-        </div>
+<div class="modal fade show" tabindex="-1" style="display: block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lista de Eventos</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeEventsList()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          @for(event of events; track event.id){
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <span>
+              ID: {{ event.id }} - {{ event.from | date }} hasta
+              {{ event.to | date }}
+            </span>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteEvent(event.id)"
+            >
+              Eliminar
+            </button>
+          </li>
+          }
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeEventsList()"
+        >
+          Cerrar
+        </button>
       </div>
     </div>
   </div>
+</div>
 }
-

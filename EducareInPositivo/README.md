@@ -12,6 +12,7 @@ XAMPP
 Apache y MySQL Start
 
 ## liberías
+MAPA: https://maplibre.org/maplibre-gl-js/docs/, C
 CALENDARIO: https://taiga-ui.dev/components/calendar-month
 GRÁFICOS: https://taiga-ui.dev/charts/bar-chart
 

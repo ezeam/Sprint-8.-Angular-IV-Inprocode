@@ -1,30 +1,35 @@
-<!-- <tui-bar class="bar" /> -->
-<!-- <tui-bar [data]="chartData" [xAxis]="true" [yAxis]="true"></tui-bar> -->
-
-<div class="chart-container">
-  <tui-pie-chart
-    [tuiHintContent]="content"
-    [value]="value"
-    size="xl"
-  />
-  <ng-template
-    #content
-    let-index
-  >
-    <span>{{ value[index] || 0 | tuiAmount: 'EUR' | async }}</span>
-    <div>{{ labels[index] }}</div>
-  </ng-template>
-</div>
-
-<div class="chart-container">
-  <tui-axes
-    class="axes"
-    [axisXLabels]="labelsX"
-    [axisYLabels]="labelsY"
+<!-- Pie Chart -->
+ @if(value.length && labels.length){
+  <div class="chart-container">
+    <tui-pie-chart
+      [tuiHintContent]="content"
+      [value]="value"
+      size="xl"
+    ></tui-pie-chart>
+    <ng-template
+      #content
+      let-index
     >
-    <tui-bar-chart
-    [max]="max"
-    [value]="[value]"
-  />
-  </tui-axes>
-</div>
+      <span>{{ (value[index] || 0) | tuiAmount: 'EUR' }}</span>
+      <div>{{ labels[index] }}</div>
+    </ng-template>
+  </div>
+ }
+
+
+<!-- Bar Chart with Axes -->
+ @if(labelsX.length && labelsY.length && value.length){
+  <div class="chart-container">
+    <tui-axes
+      class="axes"
+      [axisXLabels]="labelsX"
+      [axisYLabels]="labelsY"
+    >
+      <tui-bar-chart
+        [max]="max"
+        [value]="[value]"
+      ></tui-bar-chart>
+    </tui-axes>
+  </div>
+ }
+
