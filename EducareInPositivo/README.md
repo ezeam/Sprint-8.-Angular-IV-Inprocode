@@ -3,12 +3,14 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
 
 ## Arrancar
-1-bash-npm install
-2-Control de la base de datos (XAMPP):  
+1-bash--> \Educare> npm install
+2-bash--> \Server> npm install --save-dev nodemon
+3-Clonar base de datos educare.sql
+4-Control de la base de datos (XAMPP):  
   Apache y MySQL Start
-3-\Server> tsc --watch
-4-\Server> nodemon dist/index.js
-5-\EducareInPositivo> ng serve -o
+5-\Server> tsc --watch
+6-\Server> nodemon dist/index.js
+7-\EducareInPositivo> ng serve -o
 
 ## liberías
 MAPA: https://maplibre.org/maplibre-gl-js/docs/
@@ -16,8 +18,6 @@ MAPA: https://maplibre.org/maplibre-gl-js/docs/
       https://cloud.maptiler.com/account/keys/
 CALENDARIO: https://taiga-ui.dev/components/calendar-month
 GRÁFICOS: https://taiga-ui.dev/charts/bar-chart
-
-
 
 ## Further help
 
