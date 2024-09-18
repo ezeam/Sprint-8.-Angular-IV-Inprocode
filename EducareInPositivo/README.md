@@ -4,12 +4,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Arrancar
 1-bash--> \Educare> npm install
+
 2-bash--> \Server> npm install --save-dev nodemon
+
 3-Clonar base de datos educare.sql
+
 4-Control de la base de datos (XAMPP):  
   Apache y MySQL Start
+
 5-\Server> tsc --watch
+
 6-\Server> nodemon dist/index.js
+
 7-\EducareInPositivo> ng serve -o
 
 ## liberías

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2024 a las 12:49:03
+-- Tiempo de generación: 18-09-2024 a las 10:54:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,7 +43,7 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `dni`, `nombre`, `apellido`, `ciudad`, `email`, `telefono`) VALUES
 (25, '447512396P', 'Ester', 'Zea', 'Budapest', 'prueba52@gmail.com', '478559634'),
-(48, '8', '8', '8', '8', '8', '8');
+(50, '44789532D', 'Pepe', 'Perez', 'Ciudad real', 'pepeperez@gmail.com', '602457893');
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `events`
